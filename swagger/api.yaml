@@ -16,6 +16,30 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Item'
+  /battery/:
+    get:
+      responses:
+        '200':
+          description: 'get battery levels so far'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Battery'
+    post:
+      operationId: api.battery.addnew
+      parameters:
+        - in: body
+          name: battery
+          required: true
+          schema:
+              $ref: '#/definitions/Battery'
+      responses:
+        '201':
+          description: 'successful'
+          schema:
+              $ref: '#/definitions/Battery'
+
+
 
 definitions:
   Item:
@@ -25,3 +49,17 @@ definitions:
         type: integer
         format: int64
       name: { type: string }
+  Battery:
+   type: object
+   properties:
+     batlife:
+       type: number
+       format: float
+     charging:
+      type: boolean
+     timeleft:
+      type: number
+      format: float
+     time:
+      type: string
+      format: date-time
