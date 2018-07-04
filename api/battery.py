@@ -14,7 +14,7 @@ def search() -> list:
 
 def addnew():
     hash = random.getrandbits(64)
-    print (request.json)
+    print (request.headers)
     batt = { hash : {
         "batlife": request.json['batlife'],
         "charging": request.json['charging'],

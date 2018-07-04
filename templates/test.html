@@ -10,14 +10,14 @@
 
         //try and post initial battery state on onload
 
-        var payload = JSON.stringify({
+        var payload = {
           "batlife": battery.level,
           "charging": battery.charging,
-          "time": "2018-07-04T13:58:42.770Z",
           "timeleft": battery.dischargingTime
-        });
+        };
 
-        var payload2 = {'batlife': 0, 'charging': 'True', 'timeleft': 0, 'time': '2018-07-04T16:38:26.621Z'};
+        var payload2 = JSON.stringify(payload)
+        document.getElementById("string").innerHTML = payload2;
 
         debugger;
 
@@ -25,8 +25,9 @@
         xhttp.open("POST", "http://127.0.0.1:9090/v1.0/battery/", true);
         xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(payload2);
-        var response = JSON.parse(xhttp.responseText);
-        alert(response);
+        //var response = JSON.parse(xhttp.responseText);
+        alert(xhttp.responseText);
+        // alert(response);
         debugger;
       }
 
@@ -57,6 +58,8 @@
   <div id="level">(battery level unknown)</div>
   <div id="dischargingTime">(discharging time unknown)</div>
 </body>
+<p id="string"></p>
+
 <script>
 
 </script>
